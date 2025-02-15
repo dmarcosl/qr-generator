@@ -34,7 +34,7 @@ const QRGenerator = () => {
 
     const convertSvgToImage = (container) => {
       return new Promise((resolve) => {
-        // Si hay un logo, esperar a que se cargue
+        // If there's a logo, wait for it to load
         if (logo) {
           const img = new Image();
           img.onload = () => {
@@ -52,10 +52,14 @@ const QRGenerator = () => {
               finalCanvas.width = width;
               finalCanvas.height = height;
               
+              // Draw background
               finalCtx.fillStyle = qrOptions.bgColor;
               finalCtx.fillRect(0, 0, width, height);
+              
+              // Draw QR code
               finalCtx.drawImage(canvas, 0, 0);
               
+              // Add text if it exists
               if (qrOptions.text) {
                 finalCtx.fillStyle = qrOptions.fgColor;
                 finalCtx.font = '16px Arial';
@@ -68,7 +72,7 @@ const QRGenerator = () => {
           };
           img.src = logo;
         } else {
-          // Si no hay logo, proceder normalmente
+          // If no logo, proceed normally
           html2canvas(container, {
             backgroundColor: qrOptions.bgColor,
             scale: 1,

@@ -14,7 +14,7 @@ const App = () => {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    // Detectar idioma del navegador
+    // Detect browser language
     const browserLang = navigator.language.split('-')[0];
     const supportedLangs = ['es', 'en'];
     const defaultLang = supportedLangs.includes(browserLang) ? browserLang : 'en';
